@@ -1,0 +1,76 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    padding: 20px 0;
+    margin: 0;
+    background-color: #ecf0f1;
+}
+
+#game_area {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px;
+}
+
+#main_content {
+    flex: 3;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar {
+    flex: 1;
+    padding: 10px;
+    border-left: 1px solid #bdc3c7;
+    display: flex;
+    flex-direction: column;
+}
+
+#narration_window, #image_window, #npc_reaction_window, #player_input_window, #map_window, #character_sheet_window, #dice_rolling_window {
+    border: 1px solid #bdc3c7;
+    margin-bottom: 10px;
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#image_window, #map_window, #dice_rolling_window {
+    text-align: center;
+}
+
+#narration_window { min-height: 150px; }
+#image_window { min-height: 200px; }
+#npc_reaction_window { min-height: 100px; }
+#player_input_window { min-height: 80px; } /* Adjusted */
+#map_window { min-height: 150px; }
+#character_sheet_window { min-height: 200px; }
+#dice_rolling_window { min-height: 100px; }
+
+/* Placeholder content styling */
+#narration_window::before, 
+#image_window::before, 
+#npc_reaction_window::before, 
+#player_input_window::before, 
+#map_window::before, 
+#character_sheet_window::before, 
+#dice_rolling_window::before {
+    color: #7f8c8d;
+    font-style: italic;
+}
+
+#narration_window::before { content: "Narration will appear here..."; }
+#image_window::before { content: "Images will be displayed here..."; }
+#npc_reaction_window::before { content: "NPC reactions will be shown here..."; }
+#player_input_window::before { content: "Player input area..."; }
+#map_window::before { content: "Map will be shown here..."; }
+#character_sheet_window::before { content: "Character details will be displayed here..."; }
+#dice_rolling_window::before { content: "Dice rolls will appear here..."; }

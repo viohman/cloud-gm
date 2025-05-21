@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agentic Game Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Agentic Game Master</h1>
+    <div id="game_area" style="display: flex; flex-wrap: wrap;">
+        <div id="main_content" style="flex: 3; padding: 10px;">
+            <div id="narration_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px;">{{ narration_text }}</div>
+            <div id="image_window" style="border: 1px solid black; min-height: 200px; margin-bottom: 10px; text-align: center;"><img src="{{ image_url }}" alt="Generated Scene" style="max-width: 100%; max-height: 190px;"></div>
+            <div id="npc_reaction_window" style="border: 1px solid black; min-height: 100px; margin-bottom: 10px;">
+                {% if npc_reactions %}
+                    <strong>NPC Reactions:</strong><br>
+                    {% for reaction in npc_reactions %}
+                        {{ reaction }}<br>
+                    {% endfor %}
+                {% else %}
+                    No NPC reactions yet.
+                {% endif %}
+            </div>
+            <div id="player_input_window" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">Player Input Window</div>
+        </div>
+        <div id="sidebar" style="flex: 1; padding: 10px; border-left: 1px solid grey;">
+            <div id="map_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px; text-align: center;">Map Window</div>
+            <div id="character_sheet_window" style="border: 1px solid black; min-height: 200px; margin-bottom: 10px;">Character Sheet Window</div>
+            <div id="dice_rolling_window" style="border: 1px solid black; min-height: 100px; text-align: center;">Dice Rolling Window</div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
