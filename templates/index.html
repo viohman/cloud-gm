@@ -21,12 +21,65 @@
                     No NPC reactions yet.
                 {% endif %}
             </div>
-            <div id="player_input_window" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">Player Input Window</div>
+            <div id="player_input_window" style="border: 1px solid black; padding: 10px; margin-bottom: 10px;">
+                <form method="POST" action="{{ url_for('player_action') }}">
+                    <label for="player_input_text">Your Action/Speech:</label><br>
+                    <textarea id="player_input_text" name="player_input_text" rows="3" style="width: 90%;"></textarea><br><br>
+                    <label for="input_type">Input Type:</label>
+                    <select id="input_type" name="input_type">
+                        <option value="action">Action</option>
+                        <option value="speech">Spoken Reply</option>
+                        <option value="question_gm">Question to GM</option>
+                    </select><br><br>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
         </div>
         <div id="sidebar" style="flex: 1; padding: 10px; border-left: 1px solid grey;">
-            <div id="map_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px; text-align: center;">Map Window</div>
-            <div id="character_sheet_window" style="border: 1px solid black; min-height: 200px; margin-bottom: 10px;">Character Sheet Window</div>
-            <div id="dice_rolling_window" style="border: 1px solid black; min-height: 100px; text-align: center;">Dice Rolling Window</div>
+            <div id="map_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px; text-align: center; padding: 5px;">
+                <h4>Area Map</h4>
+                <img src="{{ map_image_url }}" alt="Area Map" style="max-width: 100%; max-height: 130px; height: auto;">
+            </div>
+            <div id="character_sheet_window" style="border: 1px solid black; min-height: 200px; margin-bottom: 10px; padding: 5px;">
+                <h4>Character Sheet</h4>
+                {% if player_character %}
+                    <p><strong>Name:</strong> {{ player_character.name }}</p>
+                    <strong>Attributes:</strong>
+                    <ul>
+                        {% for attr, value in player_character.attributes.items() %}
+                            <li>{{ attr }}: {{ value }}</li>
+                        {% endfor %}
+                    </ul>
+                    <strong>Skills:</strong>
+                    <ul>
+                        {% for skill in player_character.skills %}
+                            <li>{{ skill }}</li>
+                        {% endfor %}
+                    </ul>
+                    <strong>Items:</strong>
+                    <ul>
+                        {% for item in player_character.items %}
+                            <li>{{ item }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No character data available.</p>
+                {% endif %}
+                <hr>
+                <label for="history_question">Ask about history/lore:</label><br>
+                <input type="text" id="history_question" name="history_question" style="width: 90%; margin-bottom: 5px;"><br>
+                <button type="button" onclick="alert('History query not implemented yet!')">Ask History</button><br><br>
+                <label for="rules_question">Ask about rules:</label><br>
+                <input type="text" id="rules_question" name="rules_question" style="width: 90%; margin-bottom: 5px;"><br>
+                <button type="button" onclick="alert('Rules query not implemented yet!')">Ask Rules</button>
+            </div>
+            <div id="dice_rolling_window" style="border: 1px solid black; min-height: 100px; text-align: center; padding: 10px;">
+                <h4>Dice Roller</h4>
+                <button type="button" id="roll_d100_button">Roll d100</button>
+                <div id="dice_result" style="margin-top: 10px; font-weight: bold;">
+                    Roll dice to see result.
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='script.js') }}"></script>

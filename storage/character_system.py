@@ -14,12 +14,14 @@ class CharacterSystem:
             skills = []
         if items is None:
             items = []
-            
-        self.characters[name] = {
+        
+        character_data = {
+            'name': name, # Add this line
             'attributes': attributes,
             'skills': skills,
             'items': items
         }
+        self.characters[name] = character_data # Update this line
         self._save_characters()
         return self.characters[name]
 
