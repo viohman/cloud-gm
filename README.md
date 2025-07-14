@@ -53,7 +53,7 @@ The project is in its initial development phase. Basic UI and placeholder functi
 
 3.  **Install Dependencies:**
     ```bash
-    pip install Flask
+    pip install -r requirements.txt
     ```
 
 4.  **Run the Application:**
