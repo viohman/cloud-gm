@@ -36,6 +36,14 @@
             </div>
         </div>
         <div id="sidebar" style="flex: 1; padding: 10px; border-left: 1px solid grey;">
+            <div id="story_log_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px; padding: 5px; overflow-y: scroll;">
+                <h4>Story Log (Debug)</h4>
+                <ul>
+                    {% for entry in story_log %}
+                        <li><strong>{{ entry.type }}:</strong> {{ entry.content }} <em>(Timestamp: {{ entry.timestamp }})</em></li>
+                    {% endfor %}
+                </ul>
+            </div>
             <div id="map_window" style="border: 1px solid black; min-height: 150px; margin-bottom: 10px; text-align: center; padding: 5px;">
                 <h4>Area Map</h4>
                 <img src="{{ map_image_url }}" alt="Area Map" style="max-width: 100%; max-height: 130px; height: auto;">
